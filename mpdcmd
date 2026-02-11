@@ -4,4 +4,4 @@
 # for this to just work
 MPD_PORT=6600
 
-echo "$1" | nc 127.0.0.1 "$MPD_PORT" -q 0  
+echo -e "$1\n" | nc 127.0.0.1 "$MPD_PORT" -q 0  
