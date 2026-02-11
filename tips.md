@@ -1,3 +1,4 @@
+
 $ telnet 0 6600
 Trying 0.0.0.0...
 Connected to 0.
@@ -43,6 +44,10 @@ You don't really need mpc if you are a script nut with nc (netcat) or expect. If
 echo "next" | telnet 0 6600
 
 This will make MPD to play next song.
+
+
+so turns out all of this is completely obsolete, netcat works perfectly fine, syntax:
+    nc $IP $PORT < COMMAND
 
 
 python mpd client
@@ -153,6 +158,9 @@ added: time stamp of when the song was added
 higher priority on a song means it will play before other songs
 
 COMMAND REFERENCE -----------------------------------------------------------------------------------
+
+DOLLAR SIGNS JUST REPRESENT VARIABLES, DO NOT PUT THE DOLLAR SIGNS IN THE COMMANDS
+
 clearerror
     clears current error message in status, can also be done by any command that starts playback
 

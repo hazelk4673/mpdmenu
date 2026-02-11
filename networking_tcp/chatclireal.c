@@ -6,12 +6,12 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#define MAX 80
+#define MAX_MESSAGE 80
 #define SA struct sockaddr
 
 void chat(int sockfd) {
 
-  char buf[MAX];
+  char buf[MAX_MESSAGE];
   int n;
 
   for (;;) {
@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 
   servaddr.sin_family = AF_INET;
   servaddr.sin_addr.s_addr = inet_addr(server_address);
-  servaddr.sin_port = htons(PORT);
+  servaddr.sin_port = htons(port_num);
 
   if (connetc(sockfd, (SA*)&servaddr, sizeof(servaddr)) != 0) {
     printf("connection to server failed!\n");

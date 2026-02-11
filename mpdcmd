@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# default value, change if you want or just delete this line
+# for this to just work
+MPD_PORT=6600
+
+echo "$1" | nc 127.0.0.1 "$MPD_PORT" -q 0  
