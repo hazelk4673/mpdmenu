@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 
 # default value, change if you want or just delete this line
-# for this to just work
+# for this to just work, if you have mpd this is likely
+# already set
 MPD_PORT=6600
 
-printf "$1\n" | nc 127.0.0.1 "$MPD_PORT" -q 0  
+# these just pick which tcp thingy you want to use, 
+# ncless is a small c program I made spcifically
+# for this, so it works, however, it isn't crazy
+# good at its job or particularly redundant, but it 
+# has a bit of mpd protocol baked into it so that
+# it doesn't put anything in stdout if the command 
+# returns fine and makes the output formatting a 
+# little nicer
+#
+# tldr use the first one if you don't have netcat
+# already, use the second if you already have netcat
+# or are cool with getting netcat
+printf "$1\n" | ./ncless localhost "$MPD_PORT"
+
+# printf "$1\n" | nc localhost "$MPD_PORT" -q 0  
+

@@ -48,6 +48,7 @@ This will make MPD to play next song.
 
 so turns out all of this is completely obsolete, netcat works perfectly fine, syntax:
     nc $IP $PORT < COMMAND
+    or more nicely just pipe in from echo
 
 
 python mpd client
