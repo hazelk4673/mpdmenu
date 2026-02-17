@@ -5,19 +5,34 @@
 # already set
 MPD_PORT=6600
 
-# these just pick which tcp thingy you want to use, 
-# ncless is a small c program I made spcifically
-# for this, so it works, however, it isn't crazy
-# good at its job or particularly redundant, but it 
-# has a bit of mpd protocol baked into it so that
-# it doesn't put anything in stdout if the command 
-# returns fine and makes the output formatting a 
-# little nicer
-#
-# tldr use the first one if you don't have netcat
-# already, use the second if you already have netcat
-# or are cool with getting netcat
-printf "$1\n" | ./ncless localhost "$MPD_PORT"
+# sends command to mpd
+function cmd() {
+  # ncless is a miniscule c program
+  # that just sends a message over
+  # tcp, use it if you don't want
+  # to add a dependency
+  printf "$1\n" | ./ncless localhost "$MPD_PORT"
 
-# printf "$1\n" | nc localhost "$MPD_PORT" -q 0  
+  # netcat is a lot more robust and
+  # useful as a program, use it if
+  # you already have it
+  # printf "$1\n" | nc localhost "$MPD_PORT" -q 0  
+}
 
+# formats mpd output
+function format() {
+  printf "MPD: $1"
+}
+
+# prints the output of mpd
+# boring style
+# printf "$(format "$(cmd $1)")\n"
+
+# sends the output of mpd to your
+# tmux status bar for 1 second
+# doesn't work with newlines I think
+tmux display-message -d 1000 "$(format "$(cmd $1)")"
+
+# sends the output of mpd to
+# your notification daemon
+# notify-send "$(format "$(cmd $1)")"

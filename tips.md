@@ -360,3 +360,7 @@ cleartagid {$songid}[$tag]
 
 just get the rest from the manual i don't wanna type any more of this
     
+
+TMUX DISPLAY MENU IS AMAZING !!!!!!
+
+syntax: tmux display-menu -b rounded $item $key $command

@@ -25,15 +25,17 @@ int main(int argc, char* argv[]) {
   if (argc >= 3) { portnum = atoi(argv[2]);
   } else portnum = 6600;
 
-  bzero(message_buf, sizeof(message_buf));
-  char c;
-  for (int i = 0; ((c = getchar()) != EOF); i++) {
-    message_buf[i] = c;
-  }
-
-  if (argc >= 4) {
+  if (argc < 4) {
     bzero(message_buf, sizeof(message_buf));
-    strcpy(message_buf, argv[3]);
+    char c;
+    for (int i = 0; ((c = getchar()) != EOF); i++) {
+      message_buf[i] = c;
+    }
+  } else {
+    if (argc >= 4) {
+      bzero(message_buf, sizeof(message_buf));
+      strcpy(message_buf, argv[3]);
+    }
   }
 
   /* start udp connection */
@@ -56,15 +58,28 @@ int main(int argc, char* argv[]) {
   bzero(message_buf, sizeof(message_buf));
   read(sockfd, message_buf, sizeof(message_buf));
 
-  if (!(strncmp(message_buf, "ACK", 3))) {
-    char error[MAX - 3];
-    strncpy(error, message_buf + 3, MAX - 3);
-    printf("server error:%s", error);
-  } else if (!(strncmp(message_buf, "OK", 2))) {
-    char message[MAX - 2];
-    strncpy(message, message_buf + 2, MAX - 2);
-    printf("server returned:%s", message);
-  } else printf("unknown error");
+  /*
+   * returns server messages
+   * without their preambles
+   */
+  /*
+     if (!(strncmp(message_buf, "ACK", 3))) {
+     char error[MAX - 3];
+     strncpy(error, message_buf + 3, MAX - 3);
+     printf("server error:%s\n", error);
+     } else if (!(strncmp(message_buf, "OK", 2))) {
+     char message[MAX - 2];
+     strncpy(message, message_buf + 2, MAX - 2);
+     printf("server returned:%s\n", message);
+     } else printf("unknown error\n");
+     */
+
+  /* 
+   * returns raw server output 
+   */
+  char return_message[MAX];
+  strncpy(return_message, message_buf, MAX);
+  printf("%s");
 
   close(sockfd);
 }
