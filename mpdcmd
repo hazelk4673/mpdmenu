@@ -24,15 +24,19 @@ function format() {
   printf "MPD: $1"
 }
 
+mpdresult=$(cmd)
+
+echo $mpdresult >> $HOME/.mpdlogs
+
 # prints the output of mpd
 # boring style
-# printf "$(format "$(cmd $1)")\n"
+# printf "$(format "$mpdresult")\n"
 
 # sends the output of mpd to your
 # tmux status bar for 1 second
 # doesn't work with newlines I think
-tmux display-message -d 1000 "$(format "$(cmd $1)")"
+tmux display-message -d 1000 "$(format "$mpdresult")"
 
 # sends the output of mpd to
 # your notification daemon
-# notify-send "$(format "$(cmd $1)")"
+# notify-send "$(format "$mpdresult")"

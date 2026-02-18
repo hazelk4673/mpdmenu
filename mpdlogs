@@ -1,0 +1,3 @@
+touch $HOME/.mpdlogs
+tmux display-popup -E nvim $HOME/.mpdlogs
+
