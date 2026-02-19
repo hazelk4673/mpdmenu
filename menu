@@ -1,0 +1,16 @@
+
+
+function menu() {
+
+  
+
+  tmux display-menu music1 "" "display-message -p -t $(printf music1)"
+
+}
+
+musicdir=$HOME/Music
+
+menuresult=$(menu)
+
+printf "$menuresult"
+

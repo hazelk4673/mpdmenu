@@ -1,6 +1,0 @@
-
-ls music | tr '\n' ' ' | sed 's/ / "" /g' | cat
-
-
-
-# tmux display-menu music1 "" music1 
