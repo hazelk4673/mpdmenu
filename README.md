@@ -15,5 +15,5 @@ things are installed, it will add all of the executables to /usr/bin
 #hacking
 
 mpdmenu is just a collection of scripts, and a small tcp packet
-sender (with a little bit of mpd protocol baked into it), so
+
 it is pretty easy to customize exactly to your liking

@@ -366,3 +366,7 @@ TMUX DISPLAY MENU IS AMAZING !!!!!!
 syntax: tmux display-menu -b rounded $item $key $command
 
 find some way to use tmux display-popup to give info about current song whenever it changes
+
+TMUX DISPLAY MENU SUCKS !!!!!!!
+
+use pick instead, reads choices from stdin, outputs choice to stdout

@@ -1,0 +1,9 @@
+
+# tmux display-popup -E "find . -type f | fzy | xargs nvim"
+
+# tmux display-popup "printf 'play/pause\nskip\nprevious\nloop\nsong\nalbum' | fzy"
+
+# tmux splitw -v -l 10 "find . -type f | fzy"
+
+tmux splitw -v -l 10 "./musicmenu | xargs -0 tmux display-message -d 1000"
+
