@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-tmux splitw -v -l 10 "./musicmenu | xargs -0 tmux display-message -d 1000"
+tmux splitw -v -l 10 "musicmenu | xargs -0 tmux display-message -d 1000"
 

@@ -13,7 +13,7 @@ function cmd() {
   # that just sends a message over
   # tcp, use it if you don't want
   # to add a dependency
-  printf "$1\n" | ./ncless localhost "$MPD_PORT"
+  printf "$1\n" | ncless localhost "$MPD_PORT"
 
   # netcat is a lot more robust and
   # useful as a program, use it if

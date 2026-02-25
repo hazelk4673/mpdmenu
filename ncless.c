@@ -6,19 +6,30 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
+/*
+ * max message size, shouldn't ever
+ * need to go over 80 but if it does
+ * feel free to edit this line
+ */
 #define MAX 80
-#define STDIN_FILENO 0
 
-static int portnum = 0;
-static char* ipaddr;
 
 int main(int argc, char* argv[]) {
   /* definitions */
-  int sockfd, connfd;
+  int sockfd, connfd, portnum;
   struct sockaddr_in servaddr, cli;
   char message_buf[MAX];
+  char* ipaddr;
 
   /* args parsing */
+  /* 
+   * this section is really messy but it works
+   * for the things I want it to work for, 
+   * technically this can send packets to 
+   * other ip addresses but I haven't tested
+   * it at all and don't plan on doing so, but
+   * if you have a use for it here ya go
+   */
   if (argc >= 2) { ipaddr = !strcmp(argv[1], "localhost") ? "127.0.0.1" : argv[1];
   } else ipaddr = "127.0.0.1";
 
@@ -58,25 +69,7 @@ int main(int argc, char* argv[]) {
   bzero(message_buf, sizeof(message_buf));
   read(sockfd, message_buf, sizeof(message_buf));
 
-  /*
-   * returns server messages
-   * without their preambles
-   */
-  /*
-     if (!(strncmp(message_buf, "ACK", 3))) {
-     char error[MAX - 3];
-     strncpy(error, message_buf + 3, MAX - 3);
-     printf("server error:%s\n", error);
-     } else if (!(strncmp(message_buf, "OK", 2))) {
-     char message[MAX - 2];
-     strncpy(message, message_buf + 2, MAX - 2);
-     printf("server returned:%s\n", message);
-     } else printf("unknown error\n");
-     */
-
-  /* 
-   * returns raw server output 
-   */
+  /* return sserver output */
   char return_message[MAX];
   strncpy(return_message, message_buf, MAX);
   printf("%s");
