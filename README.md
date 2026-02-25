@@ -11,5 +11,6 @@ ncless is a tiny little tcp packet sender, completely
 optional and if you have a better tcp interface already
 installed use that, all you need to do to compile it is
 feed it to a c compiler and make sure the executable is
-named ncless
+named ncless, and it shouldn't need to link to any libraries
+that it won't automatically link to
 
