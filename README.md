@@ -14,3 +14,8 @@ feed it to a c compiler and make sure the executable is
 named ncless, and it shouldn't need to link to any libraries
 that it won't automatically link to
 
+## THIS DOES NOT WORK ON WINDOWS, WINDOWS DOES NOT HAVE A POSIX SHELL ##
+and also I'd probably have to do sockets weird for ncless to work
+
+
+
