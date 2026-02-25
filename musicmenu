@@ -1,16 +1,31 @@
 #!/usr/bin/env sh
 
+# this script opens up a menu of options and when you select one
+# it sends a command to mpd thorugh the mpdcmd script
+
+# you can use programs other than fzy with this pretty easily, but if 
+# you do be prepared to patch things
+
 case "$(printf "pause\nnext\nprevious\nsong\nraw\nqafter\nqend" | fzy)" in
+
   pause) ./mpdcmd pause ;;
+
   next) ./mpdcmd next ;;
+
   previous) ./mpdcmd previous ;;
-  song) ./mpdcmd song ;;
-  raw) read -p "> " rawcmd; 
-    # escape sequence moves cursor up one line and prints a carriage return
-    # needed to overwrite rawcmd prompt, doesn't get sent to mpd
-    printf "\033[A\r";
+
+  song) read -p "> " song ;
+    printf "\033[A\r" ; # cursor up and carriage return
+    ./mpdcmd "song "$song ;;
+
+  raw) read -p "> " rawcmd ; 
+    printf "\033[A\r" ; # cursor up and carriage return
     ./mpdcmd $rawcmd ;; 
-  qafter) find $HOME/Music -type f | fzy | awk '{print "add +0", $0}' | ./mpdcmd ;;
-  qend) ;;
+
+  qafter) find $HOME/Music -type f | fzy | awk '{print "add +0", $0}' | xargs ./mpdcmd ;;
+
+  qend) find $HOME/Music -type f | fzy | awk '{print "add +100", $0}' | xargs ./mpdcmd ;;
+
   *) exit 1 ;;
+
 esac

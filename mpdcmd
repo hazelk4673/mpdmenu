@@ -7,6 +7,8 @@ MPD_PORT=6600
 
 # sends command to mpd
 function cmd() {
+  # both of these essentially do the same thing
+
   # ncless is a miniscule c program
   # that just sends a message over
   # tcp, use it if you don't want
@@ -24,19 +26,8 @@ function format() {
   printf "MPD: $1"
 }
 
-mpdresult=$(cmd $1)
+mpdresult=$(cmd "$*")
 
 echo $mpdresult >> $HOME/.mpdlogs
 
-# prints the output of mpd
-# boring style
 printf "$(format "$mpdresult")\n"
-
-# sends the output of mpd to your
-# tmux status bar for 1 second
-# doesn't work with newlines I think
-# tmux display-message -C -d 1000 "$(format "$mpdresult")"
-
-# sends the output of mpd to
-# your notification daemon
-# notify-send "$(format "$mpdresult")"
