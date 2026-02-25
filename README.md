@@ -1,19 +1,15 @@
-#mpdmenu
 
-super simple scripts for controlling music player daemon
-through dmenu
+# MPDMENU #
 
-#installing
+super simple collection of scripts to control
+mpd either through the command line or really
+any menu you want, an example for tmux is provided
+though it wouldn't be super hard to port to really
+anything
 
-run `make build` to compile all of the executables needed, 
-they'll be pushed to a build directory for you to do whatever
-you like with
+ncless is a tiny little tcp packet sender, completely
+optional and if you have a better tcp interface already
+installed use that, all you need to do to compile it is
+feed it to a c compiler and make sure the executable is
+named ncless
 
-run make `build install` if you don't particularly care how 
-things are installed, it will add all of the executables to /usr/bin
-
-#hacking
-
-mpdmenu is just a collection of scripts, and a small tcp packet
-
-it is pretty easy to customize exactly to your liking
