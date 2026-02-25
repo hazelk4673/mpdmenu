@@ -26,6 +26,7 @@ and also I'd probably have to do sockets weird for ncless to work
 ### INSTALLING ###
 just throw all of the scripts into your path somewhere,
 doesn't matter where
+
 by default mpdmenu assumes that your music is in the
 $HOME/Music directory, feel free to change that in the 
 musicmenu script if it's elsewhere
