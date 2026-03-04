@@ -15,16 +15,18 @@ case "$(printf "pause\nnext\nprevious\nsong\nraw\nqafter\nqend" | fzy)" in
   previous) mpdcmd previous ;;
 
   song) read -p "> " song ;
-    printf "\033[A\r" ; # cursor up and carriage return
+    # cursor up and carriage return
+    printf "\033[A\r" ; 
     mpdcmd "song "$song ;;
 
   raw) read -p "> " rawcmd ; 
-    printf "\033[A\r" ; # cursor up and carriage return
+    # cursor up and carriage return
+    printf "\033[A\r" ; 
     mpdcmd $rawcmd ;; 
 
-  qafter) find $HOME/Music -type f | fzy | awk '{print "add +0", $0}' | xargs mpdcmd ;;
+  qafter) find $HOME/Music -type f | fzy | sed 's/^/add +0 /' | xargs mpdcmd ;;
 
-  qend) find $HOME/Music -type f | fzy | awk '{print "add +100", $0}' | xargs mpdcmd ;;
+  qend) find $HOME/Music -type f | fzy | sed 's/^/add +100 /' | xargs mpdcmd ;;
 
   *) exit 1 ;;
 

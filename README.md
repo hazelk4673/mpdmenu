@@ -21,7 +21,9 @@ named ncless, and it shouldn't need to link to any libraries
 that it won't automatically link to
 
 ### THIS DOES NOT WORK ON WINDOWS, WINDOWS DOES NOT HAVE A POSIX SHELL ###
-and also I'd probably have to do sockets weird for ncless to work
+though it probably would work if you use a program other
+than ncless for your packet sending, no ncless will not
+ever support windows I do NOT want to do allat
 
 ### INSTALLING ###
 just throw all of the scripts into your path somewhere,

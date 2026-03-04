@@ -28,6 +28,7 @@ function format() {
 
 mpdresult=$(cmd "$*")
 
-echo $mpdresult >> $HOME/.mpdlogs
+# uncomment if you want logging
+# echo $mpdresult >> $HOME/.mpdlogs
 
 printf "$(format "$mpdresult")\n"

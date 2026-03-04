@@ -13,7 +13,6 @@
  */
 #define MAX 80
 
-
 int main(int argc, char* argv[]) {
   /* definitions */
   int sockfd, connfd, portnum;
@@ -29,12 +28,16 @@ int main(int argc, char* argv[]) {
    * other ip addresses but I haven't tested
    * it at all and don't plan on doing so, but
    * if you have a use for it here ya go
+   *
+   * sends packets to localhost on port 6600
+   * if no other packets are provided
    */
-  if (argc >= 2) { ipaddr = !strcmp(argv[1], "localhost") ? "127.0.0.1" : argv[1];
-  } else ipaddr = "127.0.0.1";
 
-  if (argc >= 3) { portnum = atoi(argv[2]);
-  } else portnum = 6600;
+  if (argc >= 2) { ipaddr = !strcmp(argv[1], "localhost") ? "127.0.0.1" : argv[1]; } 
+  else ipaddr = "127.0.0.1";
+
+  if (argc >= 3) { portnum = atoi(argv[2]); }
+  else portnum = 6600;
 
   if (argc < 4) {
     bzero(message_buf, sizeof(message_buf));
@@ -51,8 +54,8 @@ int main(int argc, char* argv[]) {
 
   /* start udp connection */
   sockfd = socket(AF_INET, SOCK_STREAM, 0);
-  if (!sockfd) { printf("socket creation failed!\n"); exit(0);
-  } /* else printf("socket successfully created!\n"); */
+  if (!sockfd) { printf("socket creation failed!\n"); exit(0); }
+  /* else printf("socket successfully created!\n"); */
 
   bzero(&servaddr, sizeof(servaddr));
 
@@ -69,7 +72,7 @@ int main(int argc, char* argv[]) {
   bzero(message_buf, sizeof(message_buf));
   read(sockfd, message_buf, sizeof(message_buf));
 
-  /* return sserver output */
+  /* return server output */
   char return_message[MAX];
   strncpy(return_message, message_buf, MAX);
   printf("%s");
